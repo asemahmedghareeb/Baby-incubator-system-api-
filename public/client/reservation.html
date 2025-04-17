@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>WebSocket App</title>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: 'Segoe UI';
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      h1 {
+        margin-top: 2em;
+        margin-bottom: 1em;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 50%;
+      }
+
+      label span {
+        display: block;
+        font-size: 1.5rem;
+      }
+
+      .form-input {
+        width: 400px;
+        padding: 7px;
+        margin: 0;
+        outline: 0;
+        font-size: 1.1rem;
+      }
+
+      input[type=submit] {
+        width: 200px;
+        padding: 5px;
+        margin-top: 10px;
+        font-size: 1.5rem;
+      }
+
+      #resContainer {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>WebSocket App</h1>
+    <form class="form" name="reservationForm">
+      <label>
+        <span>Baby Name</span>
+        <input
+          type="text"
+          class="form-input"
+          name="babyName"
+          value="JohnDoe"
+        />
+      </label>
+      <label>
+        <span>Baby Age</span>
+        <input
+          type="number"
+          class="form-input"
+          name="babyAge"
+          value="20"
+        />
+      </label>
+      <label>
+        <span>Baby Gender</span>
+        <input
+          type="text"
+          class="form-input"
+          name="babyGender"
+          value="male"
+        />
+      </label>
+      <label>
+        <span>Baby Weight</span>
+        <input
+          type="number"
+          class="form-input"
+          name="babyWeight"
+          value="20"
+        />
+      </label>
+      <label>
+        <span>Birth Hospital</span>
+        <input
+          type="text"
+          class="form-input"
+          name="birthHospital"
+          value="some name"
+        />
+      </label>
+      <label>
+        <span>Birth Doctor Name</span>
+        <input
+          type="text"
+          class="form-input"
+          name="birthDoctorName"
+          value="JohnDoe"
+        />
+      </label>
+      <label>
+        <span>Birth Doctor Phone</span>
+        <input
+          type="text"
+          class="form-input"
+          name="birthDoctorPhone"
+          value="01097187650"
+        />
+      </label>
+      <label>
+        <span>Hospital Id</span>
+        <input
+          type="number"
+          class="form-input"
+          name="hospitalId"
+          value="4"
+        />
+      </label>
+      <input
+        id="submit-btn"
+        type="submit"
+        name="submit"
+        value="Submit"
+      />
+    </form>
+
+    <script src="wsParentClient.js"></script>
+    <script src="reservation.js"></script>
+  </body>
+</html>

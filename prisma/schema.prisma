@@ -1,0 +1,105 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id            Int           @id @default(autoincrement())
+    name          String        @db.VarChar(50)
+    email         String        @unique @db.VarChar(50)
+    password_hash String        @db.VarChar(100)
+    national_id   String        @db.VarChar(50)
+    phone_number  String        @db.VarChar(50)
+    city          String        @db.VarChar(50)
+    address       String        @db.VarChar(50)
+    longitude     Float
+    latitude      Float
+    accuracy      Float
+    created_at    DateTime      @default(now())
+    updated_at    DateTime      @updatedAt
+    requests      Request[]
+    reservations  Reservation[]
+}
+
+model Request {
+    id                   Int       @id @default(autoincrement())
+    pathological_case    String    @db.VarChar(50)
+    reservation_duration String    @db.VarChar(50)
+    city                 String    @db.VarChar(50)
+    longitude            Float
+    latitude             Float
+    accuracy             Float
+    create_at            DateTime  @default(now())
+    parent               User      @relation(fields: [parent_id], references: [id])
+    parent_id            Int
+    incubator            Incubator @relation(fields: [incubator_id], references: [id])
+    incubator_id         Int
+}
+
+model Reservation {
+    id                 Int       @id @default(autoincrement())
+    status             String    @db.VarChar(50)
+    baby_name          String    @db.VarChar(50)
+    baby_age           Int
+    baby_gender        String    @db.VarChar(50)
+    baby_weight        Float
+    birth_hospital     String    @db.VarChar(50)
+    birth_doctor_name  String    @db.VarChar(50)
+    birth_doctor_phone String    @db.VarChar(50)
+    created_at         DateTime  @default(now())
+    updated_at         DateTime  @updatedAt
+    user               User      @relation(fields: [user_id], references: [id])
+    user_id            Int
+    incubator          Incubator? @relation(fields: [incubator_id], references: [id])
+    incubator_id       Int?
+    hospital           Hospital  @relation(fields: [hospital_id], references: [id])
+    hospital_id        Int
+}
+
+model Hospital {
+    id            Int             @id @default(autoincrement())
+    email         String          @unique @db.VarChar(50)
+    password_hash String          @db.VarChar(100)
+    name          String          @db.VarChar(50)
+    type          String          @db.VarChar(50)
+    phone_number  String          @db.VarChar(50)
+    city          String          @db.VarChar(50)
+    address       String          @db.VarChar(50)
+    longitude     Float
+    latitude      Float
+    accuracy      Float
+    created_at    DateTime        @default(now())
+    updated_at    DateTime        @updatedAt
+    incubators    Incubator[]
+    hospitalStaff HospitalStaff[]
+    reservations  Reservation[]
+}
+
+model Incubator {
+    id           Int           @id @default(autoincrement())
+    name         String        @db.VarChar(50)
+    type         String        @db.VarChar(50)
+    status       String        @db.VarChar(50)
+    rent_per_day Float
+    created_at   DateTime      @default(now())
+    updated_at   DateTime      @updatedAt
+    hospital     Hospital      @relation(fields: [hospital_id], references: [id])
+    hospital_id  Int
+    requests     Request[]
+    reservations Reservation[]
+}
+
+model HospitalStaff {
+    id            Int      @id @default(autoincrement())
+    name          String   @db.VarChar(50)
+    email         String   @unique @db.VarChar(50)
+    password_hash String   @db.VarChar(100)
+    created_at    DateTime @default(now())
+    updated_at    DateTime @updatedAt
+    hospital      Hospital @relation(fields: [hospital_id], references: [id])
+    hospital_id   Int
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>WebSocket App</title>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: 'Segoe UI';
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+      }
+
+      h1 {
+        margin-top: 5em;
+        margin-bottom: 1em;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 50%;
+      }
+
+      label span {
+        display: block;
+        font-size: 1.5rem;
+      }
+
+      .form-input {
+        width: 400px;
+        padding: 7px;
+        margin: 0;
+        outline: 0;
+        font-size: 1.1rem;
+      }
+
+      input[type=submit] {
+        width: 50%;
+        padding: 5px;
+        margin-top: 10px;
+        font-size: 1.5rem;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>WebSocket App</h1>
+
+    <form class="form" name="loginForm">
+      <label>
+        <span>Email</span>
+        <input
+          type="text"
+          class="form-input"
+          name="email"
+          placeholder="JohnDoe@gmail.com"
+          autocomplete="on"
+        />
+      </label>
+      <label>
+        <span>Password</span>
+        <input
+          type="password"
+          class="form-input"
+          name="password"
+          placeholder="••••••••"
+        />
+      </label>
+      <div>
+        <label>
+          User
+          <input
+            type="radio"
+            name="role"
+            value="user"
+            checked
+          />
+        </label>
+        <label>
+          Staff
+          <input
+            type="radio"
+            name="role"
+            value="staff"
+          />
+        </label>
+      </div>
+      <input
+        id="submit-btn"
+        type="submit"
+        name="submit"
+        value="Login"
+      />
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>
